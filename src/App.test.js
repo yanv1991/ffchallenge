@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {AlphaUtil} from './AlphaUtil';
 
+/*
+ * List Missing letters tests
+ */
 it('renders without crashing', () => {
   const div = document.createElement('div');
   ReactDOM.render(<App />, div);
@@ -28,7 +31,25 @@ it('Check ""', () => {
   expect(AlphaUtil.listMissingLetter(text)).toEqual("abcdefghijklmnopqrstuvwxyz");
 });
 
-it('Check explode', () => {
-  let result = AlphaUtil.explode("B.B.B.BB", 2);
-  console.log(result);
+/*
+ * explode tests
+ */
+it('Check explode test 1', () => {
+  let result = AlphaUtil.explode("..B....", 2);
+  expect(result).toEqual([ '..B....', '<...>..', '......>', '.......' ]);
+});
+
+it('Check explode test 2', () => {
+  let result = AlphaUtil.explode("..B.B..B", 10);
+  expect(result).toEqual([ '..B.B..B', '........' ]);
+});
+
+it('Check explode test 3', () => {
+  let result = AlphaUtil.explode("B.B.B.BB.", 2);
+  expect(result).toEqual(["B.B.B.BB.","<.X.X<>.>","<.<<>.>.>","<<....>.>","........>","........."]);
+});
+
+it('Check explode test 4', () => {
+  let result = AlphaUtil.explode("..B.B..B", 1);
+  expect(result).toEqual(["..B.B..B",".<.X.><.","<.<.><>.",".<..<>.>","<..<..>.","..<....>",".<......","<.......","........"]);
 });

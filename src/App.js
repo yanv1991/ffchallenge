@@ -13,7 +13,6 @@ class App extends Component {
   }
 
   onChange(e){
-    console.log(AlphaUtil.explode("B.B.B.BB.", 2));
     var text = e.target.value;
     var result = AlphaUtil.listMissingLetter(text);
     this.setState({result});
